@@ -11,9 +11,6 @@ public class SearchService {
             return List.of();
         }
 
-        return List.of(
-            "Machine Learning",
-            "Search Engineering"
-        );
+        return List.of("Machine Learning", "Search Engineering", "AI Search");
     }
 }
