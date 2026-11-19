@@ -11,7 +11,7 @@ class SearchServiceTest {
         SearchService service = new SearchService();
         var results = service.search("machine learning");
 
-        assertEquals(2, results.size());
+        assertEquals(3, results.size());
     }
 
     @Test

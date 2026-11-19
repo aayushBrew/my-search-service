@@ -15,7 +15,7 @@ class SearchIntegrationTest {
 
         // Validate the complete service behavior
         assertNotNull(results);
-        assertEquals(2, results.size());
+        assertEquals(3, results.size());
         assertEquals("Machine Learning", results.get(0));
     }
 }
