@@ -6,45 +6,42 @@ import numpy as np
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
+# Paths
+index_dir = Path("ml/index")
+documents_path = index_dir / "documents.json"
+
+# Load documents
+with open(documents_path, "r", encoding="utf-8") as file:
+    documents = json.load(file)
+
+print("Loaded documents:", len(documents))
+
+# Load embedding model
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
-documents = [
-    "Machine learning helps computers learn from data.",
-    "AI systems learn patterns from data.",
-    "Cricket is a bat and ball sport played between two teams.",
-    "Virat Kohli is an Indian international cricketer known for batting.",
-    "Python is a popular programming language."
-]
-
 # Generate document embeddings
-embeddings = model.encode(documents)
+embeddings = model.encode(
+    documents,
+    show_progress_bar=True
+)
 
-# Convert to float32 (FAISS expects float32 vectors)
 embeddings = np.asarray(embeddings, dtype=np.float32)
 
-# Normalize vectors so inner product equals cosine similarity
+# Normalize vectors for cosine similarity
 faiss.normalize_L2(embeddings)
 
-# Get embedding dimension
+# Build exact FAISS index
 dimension = embeddings.shape[1]
 
-# Create FAISS exact-search index
 index = faiss.IndexFlatIP(dimension)
-
-# Add document vectors to index
 index.add(embeddings)
 
-# Prepare storage directory
-index_dir = Path("ml/index")
-index_dir.mkdir(parents=True, exist_ok=True)
+# Save index
+faiss.write_index(
+    index,
+    str(index_dir / "faiss.index")
+)
 
-# Save original documents
-with open(index_dir / "documents.json", "w", encoding="utf-8") as file:
-    json.dump(documents, file, indent=4)
-
-# Save FAISS index
-faiss.write_index(index, str(index_dir / "faiss.index"))
-
-print("FAISS index built successfully!")
-print("Number of vectors:", index.ntotal)
-print("Vector dimension:", dimension)
+print("\nExact index built successfully!")
+print("Documents:", index.ntotal)
+print("Dimensions:", dimension)
