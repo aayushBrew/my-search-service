@@ -1,0 +1,43 @@
+
+[
+  {
+    "query": "How do machine learning models learn?",
+    "positive": "Machine learning models learn patterns from data during training.",
+    "negative": "Python is a popular programming language used for backend development."
+  },
+  {
+    "query": "How do neural networks work?",
+    "positive": "Neural networks use interconnected layers of artificial neurons to learn representations.",
+    "negative": "Databases store and organize structured information."
+  },
+  {
+    "query": "How does semantic search work?",
+    "positive": "Semantic search uses embeddings to retrieve documents based on meaning and context.",
+    "negative": "Football is a team sport played by kicking a ball."
+  },
+  {
+    "query": "What is BM25 used for?",
+    "positive": "BM25 is a lexical ranking algorithm that scores documents based on query term matches.",
+    "negative": "Deep learning uses neural networks with multiple layers."
+  },
+  {
+    "query": "What is HNSW?",
+    "positive": "HNSW is an approximate nearest neighbor algorithm that uses a hierarchical graph for efficient vector search.",
+    "negative": "Java is used to build scalable backend applications."
+  },
+  {
+    "query": "How does RRF combine search results?",
+    "positive": "Reciprocal Rank Fusion combines multiple ranked lists using reciprocal rank scores.",
+    "negative": "Cricket is a bat and ball sport played between two teams."
+  },
+  {
+    "query": "What is a cross-encoder?",
+    "positive": "A cross-encoder jointly processes a query and document to predict their relevance.",
+    "negative": "A bi-encoder independently generates embeddings for queries and documents."
+  },
+  {
+    "query": "What is dense retrieval?",
+    "positive": "Dense retrieval uses vector embeddings to find semantically similar documents.",
+    "negative": "BM25 calculates lexical relevance using term frequency and inverse document frequency."
+  }
+]
